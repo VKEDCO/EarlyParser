@@ -1,0 +1,45 @@
+<S>
+E
+</S>
+<V>
+E
+A
+B
+C
+TIMES
+MINUS
+EQUALS
+LESS
+LP
+RP
+</V>
+<T>
+a
+b
+c
+*
+-
+=
+<
+(
+)
+</T>
+<P>
+E ::= E MINUS E
+E ::= E TIMES E
+E ::= E EQUALS E
+E ::= E LESS E
+E ::= LP E RP
+E ::= A
+E ::= B
+E ::= C
+MINUS ::= -
+TIMES ::= *
+EQUALS ::= =
+LESS ::= <
+LP ::= (
+RP ::= )
+A ::= a
+B ::= b
+C ::= c
+</P>
