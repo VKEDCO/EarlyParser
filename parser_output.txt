@@ -1,3 +1,6 @@
+// The output below is from NetBeans 7.3.1 on Ubuntu 10.14 LTS x64.
+
+run:
 ======== parse_example_01 ===========
 -----------------
 0
@@ -9,7 +12,6 @@
 [PS8 | dp=0 from=0 upto=0 | P | CFP6) NP ::= ProperNoun ]
 [PS9 | dp=0 from=0 upto=0 | P | CFP7) VP ::= VERB ]
 [PS10 | dp=0 from=0 upto=0 | P | CFP8) VP ::= VERB NP ]
-======== parse_example_02 ===========
 -----------------
 -----------------
 1
@@ -52,6 +54,95 @@ S
     NOUN 
      flight
 
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+run:
+======== parse_example_02 ===========
+-----------------
+0
+[PS0 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
+[PS1 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
+[PS2 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
+[PS3 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
+[PS4 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
+[PS5 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
+[PS6 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
+[PS7 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
+[PS8 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
+-----------------
+-----------------
+1
+[PS49 | dp=1 from=0 upto=1 | S | CFP14) A ::= a ]
+[PS50 | dp=1 from=0 upto=1 | C | CFP5) E ::= A  | PS49 ]
+[PS52 | dp=1 from=0 upto=1 | C | CFP-1) ***lambda*** ::= E  | PS50 ]
+[PS53 | dp=1 from=0 upto=1 | C | CFP0) E ::= E MINUS E  | PS50 ]
+[PS54 | dp=1 from=0 upto=1 | C | CFP1) E ::= E TIMES E  | PS50 ]
+[PS55 | dp=1 from=0 upto=1 | C | CFP2) E ::= E EQUALS E  | PS50 ]
+[PS56 | dp=1 from=0 upto=1 | C | CFP3) E ::= E LESS E  | PS50 ]
+-----------------
+-----------------
+2
+[PS63 | dp=1 from=1 upto=2 | S | CFP8) MINUS ::= - ]
+[PS64 | dp=2 from=0 upto=2 | C | CFP0) E ::= E MINUS E  | PS50 PS63 ]
+[PS66 | dp=0 from=2 upto=2 | P | CFP0) E ::= E MINUS E ]
+[PS67 | dp=0 from=2 upto=2 | P | CFP1) E ::= E TIMES E ]
+[PS68 | dp=0 from=2 upto=2 | P | CFP2) E ::= E EQUALS E ]
+[PS69 | dp=0 from=2 upto=2 | P | CFP3) E ::= E LESS E ]
+[PS70 | dp=0 from=2 upto=2 | P | CFP4) E ::= LP E RP ]
+[PS71 | dp=0 from=2 upto=2 | P | CFP5) E ::= A ]
+[PS72 | dp=0 from=2 upto=2 | P | CFP6) E ::= B ]
+[PS73 | dp=0 from=2 upto=2 | P | CFP7) E ::= C ]
+-----------------
+-----------------
+3
+[PS115 | dp=1 from=2 upto=3 | S | CFP15) B ::= b ]
+[PS116 | dp=1 from=2 upto=3 | C | CFP6) E ::= B  | PS115 ]
+[PS118 | dp=3 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS50 PS63 PS116 ]
+[PS119 | dp=1 from=2 upto=3 | C | CFP0) E ::= E MINUS E  | PS116 ]
+[PS120 | dp=1 from=2 upto=3 | C | CFP1) E ::= E TIMES E  | PS116 ]
+[PS121 | dp=1 from=2 upto=3 | C | CFP2) E ::= E EQUALS E  | PS116 ]
+[PS122 | dp=1 from=2 upto=3 | C | CFP3) E ::= E LESS E  | PS116 ]
+[PS129 | dp=1 from=0 upto=3 | C | CFP-1) ***lambda*** ::= E  | PS118 ]
+[PS130 | dp=1 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS118 ]
+[PS131 | dp=1 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS118 ]
+[PS132 | dp=1 from=0 upto=3 | C | CFP2) E ::= E EQUALS E  | PS118 ]
+[PS133 | dp=1 from=0 upto=3 | C | CFP3) E ::= E LESS E  | PS118 ]
+-----------------
+-----------------
+4
+[PS134 | dp=1 from=3 upto=4 | S | CFP9) TIMES ::= * ]
+[PS148 | dp=2 from=2 upto=4 | C | CFP1) E ::= E TIMES E  | PS116 PS134 ]
+[PS149 | dp=2 from=0 upto=4 | C | CFP1) E ::= E TIMES E  | PS118 PS134 ]
+[PS152 | dp=0 from=4 upto=4 | P | CFP0) E ::= E MINUS E ]
+[PS153 | dp=0 from=4 upto=4 | P | CFP1) E ::= E TIMES E ]
+[PS154 | dp=0 from=4 upto=4 | P | CFP2) E ::= E EQUALS E ]
+[PS155 | dp=0 from=4 upto=4 | P | CFP3) E ::= E LESS E ]
+[PS156 | dp=0 from=4 upto=4 | P | CFP4) E ::= LP E RP ]
+[PS157 | dp=0 from=4 upto=4 | P | CFP5) E ::= A ]
+[PS158 | dp=0 from=4 upto=4 | P | CFP6) E ::= B ]
+[PS159 | dp=0 from=4 upto=4 | P | CFP7) E ::= C ]
+-----------------
+-----------------
+5
+[PS218 | dp=1 from=4 upto=5 | S | CFP16) C ::= c ]
+[PS219 | dp=1 from=4 upto=5 | C | CFP7) E ::= C  | PS218 ]
+[PS221 | dp=3 from=2 upto=5 | C | CFP1) E ::= E TIMES E  | PS116 PS134 PS219 ]
+[PS222 | dp=3 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS118 PS134 PS219 ]
+[PS223 | dp=1 from=4 upto=5 | C | CFP0) E ::= E MINUS E  | PS219 ]
+[PS224 | dp=1 from=4 upto=5 | C | CFP1) E ::= E TIMES E  | PS219 ]
+[PS225 | dp=1 from=4 upto=5 | C | CFP2) E ::= E EQUALS E  | PS219 ]
+[PS226 | dp=1 from=4 upto=5 | C | CFP3) E ::= E LESS E  | PS219 ]
+[PS234 | dp=3 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS50 PS63 PS221 ]
+[PS235 | dp=1 from=2 upto=5 | C | CFP0) E ::= E MINUS E  | PS221 ]
+[PS236 | dp=1 from=2 upto=5 | C | CFP1) E ::= E TIMES E  | PS221 ]
+[PS237 | dp=1 from=2 upto=5 | C | CFP2) E ::= E EQUALS E  | PS221 ]
+[PS238 | dp=1 from=2 upto=5 | C | CFP3) E ::= E LESS E  | PS221 ]
+[PS239 | dp=1 from=0 upto=5 | C | CFP-1) ***lambda*** ::= E  | PS222 ]
+[PS240 | dp=1 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS222 ]
+[PS241 | dp=1 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS222 ]
+[PS242 | dp=1 from=0 upto=5 | C | CFP2) E ::= E EQUALS E  | PS222 ]
+[PS243 | dp=1 from=0 upto=5 | C | CFP3) E ::= E LESS E  | PS222 ]
+-----------------
 Parse Tree:
 E 
  E 
@@ -86,96 +177,11 @@ E
    C 
     c
 
------------------
-0
-[PS86 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
-[PS87 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
-[PS88 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+run:
 ======== parse_example_03 ===========
-[PS89 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
-[PS90 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
-[PS91 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
-[PS92 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
-[PS93 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
-[PS94 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
------------------
------------------
-1
-[PS135 | dp=1 from=0 upto=1 | S | CFP14) A ::= a ]
-[PS136 | dp=1 from=0 upto=1 | C | CFP5) E ::= A  | PS135 ]
-[PS138 | dp=1 from=0 upto=1 | C | CFP-1) ***lambda*** ::= E  | PS136 ]
-[PS139 | dp=1 from=0 upto=1 | C | CFP0) E ::= E MINUS E  | PS136 ]
-[PS140 | dp=1 from=0 upto=1 | C | CFP1) E ::= E TIMES E  | PS136 ]
-[PS141 | dp=1 from=0 upto=1 | C | CFP2) E ::= E EQUALS E  | PS136 ]
-[PS142 | dp=1 from=0 upto=1 | C | CFP3) E ::= E LESS E  | PS136 ]
------------------
------------------
-2
-[PS149 | dp=1 from=1 upto=2 | S | CFP8) MINUS ::= - ]
-[PS150 | dp=2 from=0 upto=2 | C | CFP0) E ::= E MINUS E  | PS136 PS149 ]
-[PS152 | dp=0 from=2 upto=2 | P | CFP0) E ::= E MINUS E ]
-[PS153 | dp=0 from=2 upto=2 | P | CFP1) E ::= E TIMES E ]
-[PS154 | dp=0 from=2 upto=2 | P | CFP2) E ::= E EQUALS E ]
-[PS155 | dp=0 from=2 upto=2 | P | CFP3) E ::= E LESS E ]
-[PS156 | dp=0 from=2 upto=2 | P | CFP4) E ::= LP E RP ]
-[PS157 | dp=0 from=2 upto=2 | P | CFP5) E ::= A ]
-[PS158 | dp=0 from=2 upto=2 | P | CFP6) E ::= B ]
-[PS159 | dp=0 from=2 upto=2 | P | CFP7) E ::= C ]
------------------
------------------
-3
-[PS201 | dp=1 from=2 upto=3 | S | CFP15) B ::= b ]
-[PS202 | dp=1 from=2 upto=3 | C | CFP6) E ::= B  | PS201 ]
-[PS204 | dp=3 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS136 PS149 PS202 ]
-[PS205 | dp=1 from=2 upto=3 | C | CFP0) E ::= E MINUS E  | PS202 ]
-[PS206 | dp=1 from=2 upto=3 | C | CFP1) E ::= E TIMES E  | PS202 ]
-======== parse_example_04 ===========
-======== parse_example_05 ===========
-======== parse_example_06 ===========
-parse_example_07
-[PS207 | dp=1 from=2 upto=3 | C | CFP2) E ::= E EQUALS E  | PS202 ]
-[PS208 | dp=1 from=2 upto=3 | C | CFP3) E ::= E LESS E  | PS202 ]
-[PS215 | dp=1 from=0 upto=3 | C | CFP-1) ***lambda*** ::= E  | PS204 ]
-[PS216 | dp=1 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS204 ]
-[PS217 | dp=1 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS204 ]
-[PS218 | dp=1 from=0 upto=3 | C | CFP2) E ::= E EQUALS E  | PS204 ]
-[PS219 | dp=1 from=0 upto=3 | C | CFP3) E ::= E LESS E  | PS204 ]
------------------
------------------
-4
-[PS220 | dp=1 from=3 upto=4 | S | CFP9) TIMES ::= * ]
-[PS234 | dp=2 from=2 upto=4 | C | CFP1) E ::= E TIMES E  | PS202 PS220 ]
-[PS235 | dp=2 from=0 upto=4 | C | CFP1) E ::= E TIMES E  | PS204 PS220 ]
-[PS238 | dp=0 from=4 upto=4 | P | CFP0) E ::= E MINUS E ]
-[PS239 | dp=0 from=4 upto=4 | P | CFP1) E ::= E TIMES E ]
-[PS240 | dp=0 from=4 upto=4 | P | CFP2) E ::= E EQUALS E ]
-[PS241 | dp=0 from=4 upto=4 | P | CFP3) E ::= E LESS E ]
-[PS242 | dp=0 from=4 upto=4 | P | CFP4) E ::= LP E RP ]
-[PS243 | dp=0 from=4 upto=4 | P | CFP5) E ::= A ]
-[PS244 | dp=0 from=4 upto=4 | P | CFP6) E ::= B ]
-[PS245 | dp=0 from=4 upto=4 | P | CFP7) E ::= C ]
------------------
------------------
-5
-[PS304 | dp=1 from=4 upto=5 | S | CFP16) C ::= c ]
-[PS305 | dp=1 from=4 upto=5 | C | CFP7) E ::= C  | PS304 ]
-[PS307 | dp=3 from=2 upto=5 | C | CFP1) E ::= E TIMES E  | PS202 PS220 PS305 ]
-[PS308 | dp=3 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS204 PS220 PS305 ]
-[PS309 | dp=1 from=4 upto=5 | C | CFP0) E ::= E MINUS E  | PS305 ]
-[PS310 | dp=1 from=4 upto=5 | C | CFP1) E ::= E TIMES E  | PS305 ]
-[PS311 | dp=1 from=4 upto=5 | C | CFP2) E ::= E EQUALS E  | PS305 ]
-[PS312 | dp=1 from=4 upto=5 | C | CFP3) E ::= E LESS E  | PS305 ]
-[PS320 | dp=3 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS136 PS149 PS307 ]
-[PS321 | dp=1 from=2 upto=5 | C | CFP0) E ::= E MINUS E  | PS307 ]
-[PS322 | dp=1 from=2 upto=5 | C | CFP1) E ::= E TIMES E  | PS307 ]
-[PS323 | dp=1 from=2 upto=5 | C | CFP2) E ::= E EQUALS E  | PS307 ]
-[PS324 | dp=1 from=2 upto=5 | C | CFP3) E ::= E LESS E  | PS307 ]
-[PS325 | dp=1 from=0 upto=5 | C | CFP-1) ***lambda*** ::= E  | PS308 ]
-[PS326 | dp=1 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS308 ]
-[PS327 | dp=1 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS308 ]
-[PS328 | dp=1 from=0 upto=5 | C | CFP2) E ::= E EQUALS E  | PS308 ]
-[PS329 | dp=1 from=0 upto=5 | C | CFP3) E ::= E LESS E  | PS308 ]
------------------
 Parse Tree:
 S 
  LP 
@@ -188,6 +194,10 @@ S
  RP 
   )
 
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+run:
+======== parse_example_04 ===========
 Parse Tree:
 S 
  LP 
@@ -195,6 +205,10 @@ S
  RP 
   )
 
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+run:
+======== parse_example_05 ===========
 Parse Tree:
 S 
  S 
@@ -209,6 +223,11 @@ S
  A 
   a
 
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+run:
+======== parse_example_06 ===========
+parse_example_07
 Parse Tree:
 E 
  E 
@@ -219,7 +238,6 @@ E
     A 
      a
    MINUS 
-======== parse_example_07 ===========
     -
    E 
     B 
@@ -234,105 +252,109 @@ E
 
 -----------------
 0
-[PS457 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
-[PS458 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
-[PS459 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
-[PS460 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
-[PS461 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
-[PS462 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
-[PS463 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
-[PS464 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
-[PS465 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
+[PS0 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
+[PS1 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
+[PS2 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
+[PS3 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
+[PS4 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
+[PS5 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
+[PS6 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
+[PS7 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
+[PS8 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 1
-[PS506 | dp=1 from=0 upto=1 | S | CFP12) LP ::= ( ]
-[PS507 | dp=1 from=0 upto=1 | C | CFP4) E ::= LP E RP  | PS506 ]
-[PS509 | dp=0 from=1 upto=1 | P | CFP0) E ::= E MINUS E ]
-[PS510 | dp=0 from=1 upto=1 | P | CFP1) E ::= E TIMES E ]
-[PS511 | dp=0 from=1 upto=1 | P | CFP2) E ::= E EQUALS E ]
-[PS512 | dp=0 from=1 upto=1 | P | CFP3) E ::= E LESS E ]
-[PS513 | dp=0 from=1 upto=1 | P | CFP4) E ::= LP E RP ]
-[PS514 | dp=0 from=1 upto=1 | P | CFP5) E ::= A ]
-[PS515 | dp=0 from=1 upto=1 | P | CFP6) E ::= B ]
-[PS516 | dp=0 from=1 upto=1 | P | CFP7) E ::= C ]
+[PS49 | dp=1 from=0 upto=1 | S | CFP12) LP ::= ( ]
+[PS50 | dp=1 from=0 upto=1 | C | CFP4) E ::= LP E RP  | PS49 ]
+[PS52 | dp=0 from=1 upto=1 | P | CFP0) E ::= E MINUS E ]
+[PS53 | dp=0 from=1 upto=1 | P | CFP1) E ::= E TIMES E ]
+[PS54 | dp=0 from=1 upto=1 | P | CFP2) E ::= E EQUALS E ]
+[PS55 | dp=0 from=1 upto=1 | P | CFP3) E ::= E LESS E ]
+[PS56 | dp=0 from=1 upto=1 | P | CFP4) E ::= LP E RP ]
+[PS57 | dp=0 from=1 upto=1 | P | CFP5) E ::= A ]
+[PS58 | dp=0 from=1 upto=1 | P | CFP6) E ::= B ]
+[PS59 | dp=0 from=1 upto=1 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 2
-[PS558 | dp=1 from=1 upto=2 | S | CFP14) A ::= a ]
-[PS559 | dp=1 from=1 upto=2 | C | CFP5) E ::= A  | PS558 ]
-[PS561 | dp=2 from=0 upto=2 | C | CFP4) E ::= LP E RP  | PS506 PS559 ]
-[PS562 | dp=1 from=1 upto=2 | C | CFP0) E ::= E MINUS E  | PS559 ]
-[PS563 | dp=1 from=1 upto=2 | C | CFP1) E ::= E TIMES E  | PS559 ]
-[PS564 | dp=1 from=1 upto=2 | C | CFP2) E ::= E EQUALS E  | PS559 ]
-[PS565 | dp=1 from=1 upto=2 | C | CFP3) E ::= E LESS E  | PS559 ]
+[PS101 | dp=1 from=1 upto=2 | S | CFP14) A ::= a ]
+[PS102 | dp=1 from=1 upto=2 | C | CFP5) E ::= A  | PS101 ]
+[PS104 | dp=2 from=0 upto=2 | C | CFP4) E ::= LP E RP  | PS49 PS102 ]
+[PS105 | dp=1 from=1 upto=2 | C | CFP0) E ::= E MINUS E  | PS102 ]
+[PS106 | dp=1 from=1 upto=2 | C | CFP1) E ::= E TIMES E  | PS102 ]
+[PS107 | dp=1 from=1 upto=2 | C | CFP2) E ::= E EQUALS E  | PS102 ]
+[PS108 | dp=1 from=1 upto=2 | C | CFP3) E ::= E LESS E  | PS102 ]
 -----------------
 -----------------
 3
-[PS572 | dp=1 from=2 upto=3 | S | CFP8) MINUS ::= - ]
-[PS573 | dp=2 from=1 upto=3 | C | CFP0) E ::= E MINUS E  | PS559 PS572 ]
-[PS575 | dp=0 from=3 upto=3 | P | CFP0) E ::= E MINUS E ]
-[PS576 | dp=0 from=3 upto=3 | P | CFP1) E ::= E TIMES E ]
-[PS577 | dp=0 from=3 upto=3 | P | CFP2) E ::= E EQUALS E ]
-[PS578 | dp=0 from=3 upto=3 | P | CFP3) E ::= E LESS E ]
-[PS579 | dp=0 from=3 upto=3 | P | CFP4) E ::= LP E RP ]
-[PS580 | dp=0 from=3 upto=3 | P | CFP5) E ::= A ]
-[PS581 | dp=0 from=3 upto=3 | P | CFP6) E ::= B ]
-[PS582 | dp=0 from=3 upto=3 | P | CFP7) E ::= C ]
+[PS115 | dp=1 from=2 upto=3 | S | CFP8) MINUS ::= - ]
+[PS116 | dp=2 from=1 upto=3 | C | CFP0) E ::= E MINUS E  | PS102 PS115 ]
+[PS118 | dp=0 from=3 upto=3 | P | CFP0) E ::= E MINUS E ]
+[PS119 | dp=0 from=3 upto=3 | P | CFP1) E ::= E TIMES E ]
+[PS120 | dp=0 from=3 upto=3 | P | CFP2) E ::= E EQUALS E ]
+[PS121 | dp=0 from=3 upto=3 | P | CFP3) E ::= E LESS E ]
+[PS122 | dp=0 from=3 upto=3 | P | CFP4) E ::= LP E RP ]
+[PS123 | dp=0 from=3 upto=3 | P | CFP5) E ::= A ]
+[PS124 | dp=0 from=3 upto=3 | P | CFP6) E ::= B ]
+[PS125 | dp=0 from=3 upto=3 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 4
-[PS624 | dp=1 from=3 upto=4 | S | CFP15) B ::= b ]
-[PS625 | dp=1 from=3 upto=4 | C | CFP6) E ::= B  | PS624 ]
-[PS627 | dp=3 from=1 upto=4 | C | CFP0) E ::= E MINUS E  | PS559 PS572 PS625 ]
-[PS628 | dp=1 from=3 upto=4 | C | CFP0) E ::= E MINUS E  | PS625 ]
-[PS629 | dp=1 from=3 upto=4 | C | CFP1) E ::= E TIMES E  | PS625 ]
-[PS630 | dp=1 from=3 upto=4 | C | CFP2) E ::= E EQUALS E  | PS625 ]
-[PS631 | dp=1 from=3 upto=4 | C | CFP3) E ::= E LESS E  | PS625 ]
-[PS638 | dp=2 from=0 upto=4 | C | CFP4) E ::= LP E RP  | PS506 PS627 ]
-[PS639 | dp=1 from=1 upto=4 | C | CFP0) E ::= E MINUS E  | PS627 ]
-[PS640 | dp=1 from=1 upto=4 | C | CFP1) E ::= E TIMES E  | PS627 ]
-[PS641 | dp=1 from=1 upto=4 | C | CFP2) E ::= E EQUALS E  | PS627 ]
-[PS642 | dp=1 from=1 upto=4 | C | CFP3) E ::= E LESS E  | PS627 ]
+[PS167 | dp=1 from=3 upto=4 | S | CFP15) B ::= b ]
+[PS168 | dp=1 from=3 upto=4 | C | CFP6) E ::= B  | PS167 ]
+[PS170 | dp=3 from=1 upto=4 | C | CFP0) E ::= E MINUS E  | PS102 PS115 PS168 ]
+[PS171 | dp=1 from=3 upto=4 | C | CFP0) E ::= E MINUS E  | PS168 ]
+[PS172 | dp=1 from=3 upto=4 | C | CFP1) E ::= E TIMES E  | PS168 ]
+[PS173 | dp=1 from=3 upto=4 | C | CFP2) E ::= E EQUALS E  | PS168 ]
+[PS174 | dp=1 from=3 upto=4 | C | CFP3) E ::= E LESS E  | PS168 ]
+[PS181 | dp=2 from=0 upto=4 | C | CFP4) E ::= LP E RP  | PS49 PS170 ]
+[PS182 | dp=1 from=1 upto=4 | C | CFP0) E ::= E MINUS E  | PS170 ]
+[PS183 | dp=1 from=1 upto=4 | C | CFP1) E ::= E TIMES E  | PS170 ]
+[PS184 | dp=1 from=1 upto=4 | C | CFP2) E ::= E EQUALS E  | PS170 ]
+[PS185 | dp=1 from=1 upto=4 | C | CFP3) E ::= E LESS E  | PS170 ]
 -----------------
 -----------------
 5
-[PS654 | dp=1 from=4 upto=5 | S | CFP13) RP ::= ) ]
-[PS655 | dp=3 from=0 upto=5 | C | CFP4) E ::= LP E RP  | PS506 PS627 PS654 ]
-[PS657 | dp=1 from=0 upto=5 | C | CFP-1) ***lambda*** ::= E  | PS655 ]
-[PS658 | dp=1 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS655 ]
-[PS659 | dp=1 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS655 ]
-[PS660 | dp=1 from=0 upto=5 | C | CFP2) E ::= E EQUALS E  | PS655 ]
-[PS661 | dp=1 from=0 upto=5 | C | CFP3) E ::= E LESS E  | PS655 ]
+[PS197 | dp=1 from=4 upto=5 | S | CFP13) RP ::= ) ]
+[PS198 | dp=3 from=0 upto=5 | C | CFP4) E ::= LP E RP  | PS49 PS170 PS197 ]
+[PS200 | dp=1 from=0 upto=5 | C | CFP-1) ***lambda*** ::= E  | PS198 ]
+[PS201 | dp=1 from=0 upto=5 | C | CFP0) E ::= E MINUS E  | PS198 ]
+[PS202 | dp=1 from=0 upto=5 | C | CFP1) E ::= E TIMES E  | PS198 ]
+[PS203 | dp=1 from=0 upto=5 | C | CFP2) E ::= E EQUALS E  | PS198 ]
+[PS204 | dp=1 from=0 upto=5 | C | CFP3) E ::= E LESS E  | PS198 ]
 -----------------
 -----------------
 6
-[PS668 | dp=1 from=5 upto=6 | S | CFP9) TIMES ::= * ]
-[PS669 | dp=2 from=0 upto=6 | C | CFP1) E ::= E TIMES E  | PS655 PS668 ]
-[PS671 | dp=0 from=6 upto=6 | P | CFP0) E ::= E MINUS E ]
-[PS672 | dp=0 from=6 upto=6 | P | CFP1) E ::= E TIMES E ]
-[PS673 | dp=0 from=6 upto=6 | P | CFP2) E ::= E EQUALS E ]
-[PS674 | dp=0 from=6 upto=6 | P | CFP3) E ::= E LESS E ]
-[PS675 | dp=0 from=6 upto=6 | P | CFP4) E ::= LP E RP ]
-[PS676 | dp=0 from=6 upto=6 | P | CFP5) E ::= A ]
-[PS677 | dp=0 from=6 upto=6 | P | CFP6) E ::= B ]
-[PS678 | dp=0 from=6 upto=6 | P | CFP7) E ::= C ]
+[PS211 | dp=1 from=5 upto=6 | S | CFP9) TIMES ::= * ]
+[PS212 | dp=2 from=0 upto=6 | C | CFP1) E ::= E TIMES E  | PS198 PS211 ]
+[PS214 | dp=0 from=6 upto=6 | P | CFP0) E ::= E MINUS E ]
+[PS215 | dp=0 from=6 upto=6 | P | CFP1) E ::= E TIMES E ]
+[PS216 | dp=0 from=6 upto=6 | P | CFP2) E ::= E EQUALS E ]
+[PS217 | dp=0 from=6 upto=6 | P | CFP3) E ::= E LESS E ]
+[PS218 | dp=0 from=6 upto=6 | P | CFP4) E ::= LP E RP ]
+[PS219 | dp=0 from=6 upto=6 | P | CFP5) E ::= A ]
+[PS220 | dp=0 from=6 upto=6 | P | CFP6) E ::= B ]
+[PS221 | dp=0 from=6 upto=6 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 7
-[PS720 | dp=1 from=6 upto=7 | S | CFP16) C ::= c ]
-[PS721 | dp=1 from=6 upto=7 | C | CFP7) E ::= C  | PS720 ]
-[PS723 | dp=3 from=0 upto=7 | C | CFP1) E ::= E TIMES E  | PS655 PS668 PS721 ]
-[PS724 | dp=1 from=6 upto=7 | C | CFP0) E ::= E MINUS E  | PS721 ]
-[PS725 | dp=1 from=6 upto=7 | C | CFP1) E ::= E TIMES E  | PS721 ]
-[PS726 | dp=1 from=6 upto=7 | C | CFP2) E ::= E EQUALS E  | PS721 ]
-[PS727 | dp=1 from=6 upto=7 | C | CFP3) E ::= E LESS E  | PS721 ]
-[PS734 | dp=1 from=0 upto=7 | C | CFP-1) ***lambda*** ::= E  | PS723 ]
-[PS735 | dp=1 from=0 upto=7 | C | CFP0) E ::= E MINUS E  | PS723 ]
-[PS736 | dp=1 from=0 upto=7 | C | CFP1) E ::= E TIMES E  | PS723 ]
-[PS737 | dp=1 from=0 upto=7 | C | CFP2) E ::= E EQUALS E  | PS723 ]
-[PS738 | dp=1 from=0 upto=7 | C | CFP3) E ::= E LESS E  | PS723 ]
+[PS263 | dp=1 from=6 upto=7 | S | CFP16) C ::= c ]
+[PS264 | dp=1 from=6 upto=7 | C | CFP7) E ::= C  | PS263 ]
+[PS266 | dp=3 from=0 upto=7 | C | CFP1) E ::= E TIMES E  | PS198 PS211 PS264 ]
+[PS267 | dp=1 from=6 upto=7 | C | CFP0) E ::= E MINUS E  | PS264 ]
+[PS268 | dp=1 from=6 upto=7 | C | CFP1) E ::= E TIMES E  | PS264 ]
+[PS269 | dp=1 from=6 upto=7 | C | CFP2) E ::= E EQUALS E  | PS264 ]
+[PS270 | dp=1 from=6 upto=7 | C | CFP3) E ::= E LESS E  | PS264 ]
+[PS277 | dp=1 from=0 upto=7 | C | CFP-1) ***lambda*** ::= E  | PS266 ]
+[PS278 | dp=1 from=0 upto=7 | C | CFP0) E ::= E MINUS E  | PS266 ]
+[PS279 | dp=1 from=0 upto=7 | C | CFP1) E ::= E TIMES E  | PS266 ]
+[PS280 | dp=1 from=0 upto=7 | C | CFP2) E ::= E EQUALS E  | PS266 ]
+[PS281 | dp=1 from=0 upto=7 | C | CFP3) E ::= E LESS E  | PS266 ]
 -----------------
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+run:
+======== parse_example_07 ===========
 Parse Tree:
 E 
  E 
@@ -346,51 +368,57 @@ E
 
 -----------------
 0
-[PS750 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
-[PS751 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
-[PS752 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
-[PS753 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
-[PS754 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
-[PS755 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
-[PS756 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
-[PS757 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
-[PS758 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
+[PS0 | dp=0 from=0 upto=0 | N | CFP-1) ***lambda*** ::= E ]
+[PS1 | dp=0 from=0 upto=0 | P | CFP0) E ::= E MINUS E ]
+[PS2 | dp=0 from=0 upto=0 | P | CFP1) E ::= E TIMES E ]
+[PS3 | dp=0 from=0 upto=0 | P | CFP2) E ::= E EQUALS E ]
+[PS4 | dp=0 from=0 upto=0 | P | CFP3) E ::= E LESS E ]
+[PS5 | dp=0 from=0 upto=0 | P | CFP4) E ::= LP E RP ]
+[PS6 | dp=0 from=0 upto=0 | P | CFP5) E ::= A ]
+[PS7 | dp=0 from=0 upto=0 | P | CFP6) E ::= B ]
+[PS8 | dp=0 from=0 upto=0 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 1
-[PS799 | dp=1 from=0 upto=1 | S | CFP14) A ::= a ]
-[PS800 | dp=1 from=0 upto=1 | C | CFP5) E ::= A  | PS799 ]
-[PS802 | dp=1 from=0 upto=1 | C | CFP-1) ***lambda*** ::= E  | PS800 ]
-[PS803 | dp=1 from=0 upto=1 | C | CFP0) E ::= E MINUS E  | PS800 ]
-[PS804 | dp=1 from=0 upto=1 | C | CFP1) E ::= E TIMES E  | PS800 ]
-[PS805 | dp=1 from=0 upto=1 | C | CFP2) E ::= E EQUALS E  | PS800 ]
-[PS806 | dp=1 from=0 upto=1 | C | CFP3) E ::= E LESS E  | PS800 ]
+[PS49 | dp=1 from=0 upto=1 | S | CFP14) A ::= a ]
+[PS50 | dp=1 from=0 upto=1 | C | CFP5) E ::= A  | PS49 ]
+[PS52 | dp=1 from=0 upto=1 | C | CFP-1) ***lambda*** ::= E  | PS50 ]
+[PS53 | dp=1 from=0 upto=1 | C | CFP0) E ::= E MINUS E  | PS50 ]
+[PS54 | dp=1 from=0 upto=1 | C | CFP1) E ::= E TIMES E  | PS50 ]
+[PS55 | dp=1 from=0 upto=1 | C | CFP2) E ::= E EQUALS E  | PS50 ]
+[PS56 | dp=1 from=0 upto=1 | C | CFP3) E ::= E LESS E  | PS50 ]
 -----------------
 -----------------
 2
-[PS813 | dp=1 from=1 upto=2 | S | CFP9) TIMES ::= * ]
-[PS814 | dp=2 from=0 upto=2 | C | CFP1) E ::= E TIMES E  | PS800 PS813 ]
-[PS816 | dp=0 from=2 upto=2 | P | CFP0) E ::= E MINUS E ]
-[PS817 | dp=0 from=2 upto=2 | P | CFP1) E ::= E TIMES E ]
-[PS818 | dp=0 from=2 upto=2 | P | CFP2) E ::= E EQUALS E ]
-[PS819 | dp=0 from=2 upto=2 | P | CFP3) E ::= E LESS E ]
-[PS820 | dp=0 from=2 upto=2 | P | CFP4) E ::= LP E RP ]
-[PS821 | dp=0 from=2 upto=2 | P | CFP5) E ::= A ]
-[PS822 | dp=0 from=2 upto=2 | P | CFP6) E ::= B ]
-[PS823 | dp=0 from=2 upto=2 | P | CFP7) E ::= C ]
+[PS63 | dp=1 from=1 upto=2 | S | CFP9) TIMES ::= * ]
+[PS64 | dp=2 from=0 upto=2 | C | CFP1) E ::= E TIMES E  | PS50 PS63 ]
+[PS66 | dp=0 from=2 upto=2 | P | CFP0) E ::= E MINUS E ]
+[PS67 | dp=0 from=2 upto=2 | P | CFP1) E ::= E TIMES E ]
+[PS68 | dp=0 from=2 upto=2 | P | CFP2) E ::= E EQUALS E ]
+[PS69 | dp=0 from=2 upto=2 | P | CFP3) E ::= E LESS E ]
+[PS70 | dp=0 from=2 upto=2 | P | CFP4) E ::= LP E RP ]
+[PS71 | dp=0 from=2 upto=2 | P | CFP5) E ::= A ]
+[PS72 | dp=0 from=2 upto=2 | P | CFP6) E ::= B ]
+[PS73 | dp=0 from=2 upto=2 | P | CFP7) E ::= C ]
 -----------------
 -----------------
 3
-[PS865 | dp=1 from=2 upto=3 | S | CFP15) B ::= b ]
-[PS866 | dp=1 from=2 upto=3 | C | CFP6) E ::= B  | PS865 ]
-[PS868 | dp=3 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS800 PS813 PS866 ]
-[PS869 | dp=1 from=2 upto=3 | C | CFP0) E ::= E MINUS E  | PS866 ]
-[PS870 | dp=1 from=2 upto=3 | C | CFP1) E ::= E TIMES E  | PS866 ]
-[PS871 | dp=1 from=2 upto=3 | C | CFP2) E ::= E EQUALS E  | PS866 ]
-[PS872 | dp=1 from=2 upto=3 | C | CFP3) E ::= E LESS E  | PS866 ]
-[PS879 | dp=1 from=0 upto=3 | C | CFP-1) ***lambda*** ::= E  | PS868 ]
-[PS880 | dp=1 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS868 ]
-[PS881 | dp=1 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS868 ]
-[PS882 | dp=1 from=0 upto=3 | C | CFP2) E ::= E EQUALS E  | PS868 ]
-[PS883 | dp=1 from=0 upto=3 | C | CFP3) E ::= E LESS E  | PS868 ]
+[PS115 | dp=1 from=2 upto=3 | S | CFP15) B ::= b ]
+[PS116 | dp=1 from=2 upto=3 | C | CFP6) E ::= B  | PS115 ]
+[PS118 | dp=3 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS50 PS63 PS116 ]
+[PS119 | dp=1 from=2 upto=3 | C | CFP0) E ::= E MINUS E  | PS116 ]
+[PS120 | dp=1 from=2 upto=3 | C | CFP1) E ::= E TIMES E  | PS116 ]
+[PS121 | dp=1 from=2 upto=3 | C | CFP2) E ::= E EQUALS E  | PS116 ]
+[PS122 | dp=1 from=2 upto=3 | C | CFP3) E ::= E LESS E  | PS116 ]
+[PS129 | dp=1 from=0 upto=3 | C | CFP-1) ***lambda*** ::= E  | PS118 ]
+[PS130 | dp=1 from=0 upto=3 | C | CFP0) E ::= E MINUS E  | PS118 ]
+[PS131 | dp=1 from=0 upto=3 | C | CFP1) E ::= E TIMES E  | PS118 ]
+[PS132 | dp=1 from=0 upto=3 | C | CFP2) E ::= E EQUALS E  | PS118 ]
+[PS133 | dp=1 from=0 upto=3 | C | CFP3) E ::= E LESS E  | PS118 ]
 -----------------
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+
