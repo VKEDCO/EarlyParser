@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.vkedco.nlp.earlyparser;
 import java.util.ArrayList;
@@ -261,8 +257,8 @@ public class Parser {
         String gfPath = "ambiguous_grammar.txt";
         Parser epr = Parser.factory(gfPath, 5);
         ArrayList<ParseTree> ptrees = epr.parse("a - b * c");
-        epr.displayParseTrees(ptrees);
         epr.displayChart();
+        epr.displayParseTrees(ptrees);
     }
 
     static void parse_example_03() {
