@@ -1,4 +1,3 @@
-
 package org.vkedco.nlp.earlyparser;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -105,30 +104,306 @@ public class Parser {
         }
         return false;
     }
-    
+
+    // this method is used by addScannedUpdates to chart.
+    // the scanner does not modify the chart at a given pos.
+    // it always adds to a postion in the chart to the right of pos.
+    private void addToChart(ParserState ps, int pos) {
+        if (pos >= mChart.size()) {
+            return;
+        }
+        if (!isInChart(ps, pos)) {
+            if ( debugFlagOn() ) {
+                System.out.println("Adding " + ps.toString() + " at " + pos);
+            }
+            mChart.get(pos).add(ps);
+        }
+    }
+
+    // predictorChartModified flag is set only if this
+    // method adds a new parse state at a particular position.
+    private void addPredictedUpdateToChart(ParserState ps, int pos) {
+        if (pos >= mChart.size()) {
+            return;
+        }
+        if (!isInChart(ps, pos)) {
+            if ( debugFlagOn() ) {
+                System.out.println("Adding " + ps.toString() + " at " + pos);
+            }
+            ps.setOrigin("P");
+            mChart.get(pos).add(ps);
+            mPredictorChartModifiedFlag = true;
+            
+        }
+    }
+
+    // completerChartModified flag is set only if this method
+    // adds a new parse state at a given position.
+    private void addCompletedUpdateToChart(ParserState ps, int pos) {
+        if (pos >= mChart.size()) {
+            return;
+        }
+        if (!isInChart(ps, pos)) {
+            if ( debugFlagOn() ) {
+                System.out.println("Adding " + ps.toString() + " at " + pos);
+            }
+            ps.setOrigin("C");
+            mChart.get(pos).add(ps);
+            mCompleterChartModifiedFlag = true;
+        }
+    }
+
+    private void addPredictedUpdatesToChart(ArrayList<ParserState> updates) {
+        if (updates == null) {
+            return;
+        }
+        Iterator<ParserState> iter = updates.iterator();
+        ParserState ps = null;
+        while (iter.hasNext()) {
+            ps = iter.next();
+            addPredictedUpdateToChart(ps, ps.getUptoPos());
+        }
+    }
+
+    private void addCompletedUpdatesToChart(ArrayList<ParserState> updates) {
+        if (updates == null) {
+            return;
+        }
+        Iterator<ParserState> iter = updates.iterator();
+        ParserState ps = null;
+        while (iter.hasNext()) {
+            ps = iter.next();
+            addCompletedUpdateToChart(ps, ps.getUptoPos());
+        }
+    }
+
+    private void addScannedUpdatesToChart(ArrayList<ParserState> updates) {
+        if (updates == null) {
+            return;
+        }
+        Iterator<ParserState> iter = updates.iterator();
+        ParserState ps = null;
+        while (iter.hasNext()) {
+            ps = iter.next();
+            ps.setOrigin("S");
+            addToChart(ps, ps.getUptoPos());
+        }
+    }
+
+    private boolean sameNextCat(CFGSymbol s, ParserState ps) {
+        return s.isEqual(ps.nextCat());
+    }
+
+    // RecognizerState(int ruleNum, int dotPos, int fromPos, int uptoPos, CFGRule r)
+    private void addDummyParserState() {
+        CFGSymbol dlhs = mDummyStartSymbol;
+        ArrayList<CFGSymbol> drhs = new ArrayList<CFGSymbol>();
+        drhs.add(mCFG.getStartSymbol());
+        CFProduction dr = new CFProduction(dlhs, drhs);
+        dr.mID = -1;
+        ParserState dummyParserState = new ParserState(-1, 0, 0, 0, dr);
+        CFProduction r = dummyParserState.getCFGRule();
+        addToChart(dummyParserState, 0);
+    }
+
     // there is no need to have a chartupdate class.
     // all new states should be added at their upto positions.
     // In other words, addPS.getUptoPos().
     private ArrayList<ParserState> predict(ParserState ps) {
-        // prediction code
-        
+        if ( debugFlagOn() )
+            System.out.println("Predicting on " + ps.toString());
+        ArrayList<ParserState> chartUpdates = null;
+        if ( debugFlagOn() )
+            System.out.println("Getting rules for " + ps.nextCat().toString());
+        ArrayList<CFProduction> rules = mCFG.getRulesForLHS(ps.nextCat());
+        if (rules == null) {
+            if ( debugFlagOn() )
+                System.out.println("no rules found");
+            return null;
+        } else {
+            if ( debugFlagOn() )
+                System.out.println(rules.size() + " rules found");
+        }
+        Iterator<CFProduction> iter = rules.iterator();
+        ParserState addPS = null;
+        CFProduction curRule = null;
+        while (iter.hasNext()) {
+            curRule = iter.next();
+            addPS = new ParserState(curRule.mID, 0, ps.getUptoPos(),
+                    ps.getUptoPos(), curRule);
+            if (chartUpdates == null) {
+                chartUpdates = new ArrayList<ParserState>();
+            }
+            chartUpdates.add(addPS);
+        }
+        if ( debugFlagOn() )
+            System.out.println(chartUpdates.size() + " updates generated");
+        return chartUpdates;
     }
 
-    // Have scanner return a list of updates for the chart.
+    // Have scanner return a list of updates.
     private ArrayList<ParserState> scan(ParserState ps, ArrayList<CFGSymbol> words) {
-        // scanning code
-        
+        if ( debugFlagOn() )
+            System.out.println("Scanning " + ps.toString());
+        if (ps.getUptoPos() >= words.size()) {
+            return null;
+        }
+
+        ArrayList<ParserState> updates = null;
+        //CFGSymbol sj = words.get(ps.getUptoPos());
+        CFGSymbol var = ps.nextCat();
+        CFGSymbol term = words.get(ps.getUptoPos());
+        if (mCFG.isInPartsOfSpeech(var, term)) {
+            ParserState addPS = null;
+            // we need to find the rule ps.NextCat() ::= words.get(ps.getUptoPos());
+            CFProduction rule = mCFG.getPartOfSpeechRule(var, term);
+            if (rule == null) {
+                System.err.println("Rule " + var + " ::= " + term +
+                        " is not in grammar");
+                return null;
+            }
+            addPS = new ParserState(rule.mID, 1,
+                    ps.getUptoPos(), ps.getUptoPos() + 1, rule);
+            if ( debugFlagOn() )
+                System.out.println("Scanner adding " + addPS.toString());
+            updates = new ArrayList<ParserState>();
+            updates.add(addPS);
+        }
+        return updates;
     }
 
-
+    // Work on complete
     private ArrayList<ParserState> complete(ParserState ps) {
-        // completion code
-           
+        if ( debugFlagOn() )
+            System.out.println("Completing " + ps.toString());
+        ArrayList<ParserState> chartUpdates = null;
+        ArrayList<ParserState> parseStates = mChart.get(ps.getFromPos());
+        Iterator<ParserState> iter = parseStates.iterator();
+        CFGSymbol completedSymbol = ps.getCFGRule().mLHS;
+        ParserState addPS = null;
+        ParserState curPS = null;
+        ArrayList<ParserState> prevStates = null;
+        while (iter.hasNext()) {
+            curPS = iter.next();
+            if (sameNextCat(completedSymbol, curPS)) {
+                addPS = new ParserState(curPS.getRuleNum(),
+                        curPS.getDotPos() + 1,
+                        curPS.getFromPos(),
+                        ps.getUptoPos(),
+                        curPS.getCFGRule());
+                addPS.addPreviousStatesOf(curPS);
+                addPS.addPreviousState(ps);
+                if (chartUpdates == null) {
+                    chartUpdates = new ArrayList<ParserState>();
+                }
+                chartUpdates.add(addPS);
+            }
+        }
+        return chartUpdates;
     }
 
-   
-      
+    private void fillInChartOnceAt(ArrayList<CFGSymbol> words, int pos) {
+        // Set both predictor and completer modification flags to false;
+        mPredictorChartModifiedFlag = false;
+        mCompleterChartModifiedFlag = false;
+        ArrayList<ParserState> parseStates = mChart.get(pos);
+        if (parseStates == null) {
+            return;
+        }
+        Iterator<ParserState> iter = parseStates.iterator();
+        Iterator<ParserState> innerIter = null;
+        ParserState curPS = null;
+        ArrayList<ParserState> predictedUpdates = null;
+        ArrayList<ParserState> scanUpdates = null;
+        ArrayList<ParserState> completedUpdates = null;
+        ArrayList<ParserState> currentPredictedUpdates = null;
+        ArrayList<ParserState> currentScanUpdates = null;
+        ArrayList<ParserState> currentCompletedUpdates = null;
+        while (iter.hasNext()) {
+            curPS = iter.next();
+            if ( debugFlagOn() )
+                System.out.println("curPS == " + curPS.toString());
+            if (!curPS.isComplete()) {
+                if ( debugFlagOn() ) System.out.println("state not complete");
+                if (!mCFG.isPartOfSpeech(curPS.nextCat())) {
+                    if ( debugFlagOn() ) System.out.println("not part of speech");
+                    currentPredictedUpdates = predict(curPS);
+                    // if there are predicted updates, add them
+                    // to the result predicted updates.
+                    if (currentPredictedUpdates != null) {
+                        if (predictedUpdates == null) {
+                            predictedUpdates = new ArrayList<ParserState>();
+                        }
+                        innerIter = currentPredictedUpdates.iterator();
+                        while (innerIter.hasNext()) {
+                            predictedUpdates.add(innerIter.next());
+                        }
+                    }
+                } else {
+                    currentScanUpdates = scan(curPS, words);
+                    // if there are current scan updates,
+                    // add them to the result predicted updates.
+                    if (currentScanUpdates != null) {
+                        if (scanUpdates == null) {
+                            scanUpdates = new ArrayList<ParserState>();
+                        }
+                        innerIter = currentScanUpdates.iterator();
+                        while (innerIter.hasNext()) {
+                            scanUpdates.add(innerIter.next());
+                        }
+                    }
+                }
+            } else {
+                currentCompletedUpdates = complete(curPS);
+                // if there are current completed updates,
+                // add them to the result completed updates.
+                if (currentCompletedUpdates != null) {
+                    if (completedUpdates == null) {
+                        completedUpdates = new ArrayList<ParserState>();
+                    }
+                    innerIter = currentCompletedUpdates.iterator();
+                    while (innerIter.hasNext()) {
+                        completedUpdates.add(innerIter.next());
+                    }
+                }
+            }
+        }
+        if (predictedUpdates != null) {
+            addPredictedUpdatesToChart(predictedUpdates);
+        }
+        if (scanUpdates != null) {
+            addScannedUpdatesToChart(scanUpdates);
+        }
+        if (completedUpdates != null) {
+            addCompletedUpdatesToChart(completedUpdates);
+        }
+    }
 
+    private void fillInChartAt(ArrayList<CFGSymbol> words, int pos) {
+        fillInChartOnceAt(words, pos);
+        while (isPredictorChartModified() ||
+                isCompleterChartModified()) {
+            fillInChartOnceAt(words, pos);
+            if ( debugFlagOn() ) {
+                System.out.println();
+                displayChart();
+            }
+        }
+    }
+
+    private boolean isPredictorChartModified() {
+        return mPredictorChartModifiedFlag;
+    }
+
+    private boolean isCompleterChartModified() {
+        return mCompleterChartModifiedFlag;
+    }
+
+    private void parseCFGSymbols(ArrayList<CFGSymbol> input) {
+        for (int i = 0; i <= input.size(); i++) {
+            fillInChartAt(input, i);
+        }
+    }
 
     /*
      * a parser state is final iff
@@ -229,6 +504,15 @@ public class Parser {
                 finalStates.add(ps);
             }
         }
+        
+        System.out.println("FINAL PARSER STATES:");
+        Iterator<ParserState> it = finalStates.iterator();
+        ParserState currentPS = null; 
+        while ( it.hasNext() ) {
+            currentPS = it.next();
+            System.out.println(currentPS.toString());
+        }
+        
         return finalStates;
     }
 
@@ -304,16 +588,15 @@ public class Parser {
         epr.displayChart();
     }
 
+    // some examples
     public static void main(String[] args) {
         parse_example_01();
-        parse_example_02();
-        parse_example_03();
-        parse_example_04();
-        parse_example_05();
-        parse_example_06();
-        parse_example_07();
+        //parse_example_02();
+        //parse_example_03();
+        //parse_example_04();
+        //parse_example_05();
+        //parse_example_06();
+        //parse_example_07();
     }
-
-}
 
 }
