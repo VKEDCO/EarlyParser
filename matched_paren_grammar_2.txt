@@ -1,0 +1,19 @@
+<S>
+S
+</S>
+<V>
+S
+LP
+RP
+</V>
+<T>
+(
+)
+</T>
+<P>
+LP ::= (
+RP ::= )
+S ::= LP RP
+S ::= LP S RP
+S ::= S S
+</P>
