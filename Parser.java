@@ -587,16 +587,23 @@ public class Parser {
         epr.displayParseTrees(ptrees);
         epr.displayChart();
     }
+    
+    static void test_parser(String grammar_file_path, String input, int chart_len) {
+        Parser epr = Parser.factory(grammar_file_path, chart_len);
+        ArrayList<ParseTree> ptrees = epr.parse(input);
+        epr.displayParseTrees(ptrees);
+        //epr.displayChart();
+    }
 
     // some examples
     public static void main(String[] args) {
-        parse_example_01();
-        //parse_example_02();
-        //parse_example_03();
-        //parse_example_04();
-        //parse_example_05();
-        //parse_example_06();
-        //parse_example_07();
+       //test_parser("matched_paren_grammar.txt", "( ( ) ( ) )", 6);
+       //test_parser("matched_paren_grammar_2.txt", "( ( ) ( ) )", 6);
+       //test_parser("matched_paren_grammar_2.txt", "( ( ( ) ( ) ) ( ( ) ) )", 12);
+       //test_parser("ambiguous_grammar.txt", "a - b * c", 5);
+       test_parser("flight_grammar.txt", "does this flight include a meal", 6);
+       //test_parser("flight_grammar.txt", "will this flight include a meal", 6);
+       //test_parser("flight_grammar.txt", "does TWA fly to Houston", 5);
     }
 
 }
